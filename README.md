@@ -27,7 +27,7 @@ localhost:3000
 ```
 1. 執行餐廳清單：打開瀏覽器，於網址列輸入
 ```
-localhost:3000
+http://localhost:3000/
 ```
 
 ## 功能 (features)
