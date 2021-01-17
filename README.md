@@ -1,4 +1,4 @@
-# 餐廳清單 (restaurant list)
+# 最愛餐廳清單 (favorite_restaurant)
 
 ## 環境建置與需求 (prerequisites)
 - Node.js 10.15.0
