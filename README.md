@@ -2,6 +2,10 @@
 
 ## 環境建置與需求 (prerequisites)
 - Node.js 10.15.0
+- body-parser 1.19.0
+- express 4.17.1
+- express-handlebars 5.2.0
+- mongoose 5.11.13
 
 ## 安裝與執行 (installation and execution)
 1. 選定一個資料夾，用來存放本專案。開啟終端機，移動至該資料夾，下載本專案
@@ -18,7 +22,7 @@ npm install
 ```
 3. 啟動伺服器
 ```
-node app.js
+npm run dev 
 ```
 4. 若終端機出現下列字樣，代表伺服器成功啟動
 ```
@@ -34,3 +38,4 @@ http://localhost:3000/
 - 瀏覽餐廳列表
 - 於餐廳列表中點擊任一間餐廳，即可瀏覽該餐廳之詳細資訊
 - 使用餐廳名稱，搜尋列表中之餐廳
+- 增加編輯.新增.刪除功能
