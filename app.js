@@ -37,6 +37,7 @@ app.get('/restaurants/new', (req, res) => {
 })
 app.post('/restaurants', (req, res) => {
   const restaurant = req.body
+  if (req.body.image.length === 0) { req.body.image = 'https://www.teknozeka.com/wp-content/uploads/2020/03/wp-header-logo-33.png' }
   return Restaurant.create(restaurant)
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
@@ -57,9 +58,37 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
+  let obj = {
+    name: req.body.name,
+    category: req.body.category,
+    image: req.body.image,
+    location: req.body.location,
+    phone: req.body.phone,
+    google_map: req.body.google_map,
+    rating: req.body.rating,
+    description: req.body.description
+  }
+  let {
+    name,
+    category,
+    image,
+    location,
+    phone,
+    google_map,
+    rating,
+    description,
+  } = obj
   return Restaurant.findById(id)
     .then(restaurant => {
-      return restaurant.save(req.body)
+      restaurant.name = name
+      restaurant.category = category
+      restaurant.image = image
+      restaurant.location = location
+      restaurant.phone = phone
+      restaurant.google_map = google_map
+      restaurant.rating = rating
+      restaurant.description = description
+      return restaurant.save()
     })
     .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
