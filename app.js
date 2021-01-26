@@ -58,16 +58,6 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
-  let obj = {
-    name: req.body.name,
-    category: req.body.category,
-    image: req.body.image,
-    location: req.body.location,
-    phone: req.body.phone,
-    google_map: req.body.google_map,
-    rating: req.body.rating,
-    description: req.body.description
-  }
   let {
     name,
     category,
@@ -77,7 +67,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
     google_map,
     rating,
     description,
-  } = obj
+  } = req.body
   return Restaurant.findById(id)
     .then(restaurant => {
       restaurant.name = name
