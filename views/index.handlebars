@@ -1,9 +1,8 @@
 <!-- search bar -->
-<div class="container search-bar">
+<div class="container search-bar d-flex justify-content-around">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
-      <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
+      <form action="/restaurants/search">
         <div class="input-group">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳" aria-label="Restaurant Name..."
             value="" aria-describedby="search-button">
@@ -14,9 +13,21 @@
       </form>
     </div>
   </div>
+  <!--Dropdowns-->
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      排序選項
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li><a class="dropdown-item" name="AtoZ"href="/sort/AtoZ">A -> Z</a></li>
+      <li><a class="dropdown-item"name="ZtoA"href="/sort/ZtoA">Z -> A</a></li>
+      <li><a class="dropdown-item" name="category" href="/sort/category">類別</a></li>
+    </ul>
+  </div>
 </div>
 <!-- restaurant list -->
-<div class="container mt-5">
+<div class="container mt-2">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">
@@ -36,8 +47,8 @@
                   {{this.rating}}
                   <i class="fas fa-star"></i>
                 </span>
-                <a href="./restaurants/{{ this._id }}/edit" class="btn btn-danger">編輯</a>
-                <form action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+                <a href="/restaurants/{{ this._id }}/edit" class="btn btn-danger">編輯</a>
+                <form action="/restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
                   <button class="btn btn-danger"type="submit">刪除</button>
                 </form>
               </div>
