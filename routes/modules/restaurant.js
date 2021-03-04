@@ -6,9 +6,10 @@ router.get('/new', (req, res) => {
   return res.render('new')
 })
 router.post('/', (req, res) => {
-  const restaurant = req.body
+  const userId = req.user._id
+  const { name, category, location, phone, google_map, image, description, rating} = req.body
   if (req.body.image.length === 0) { req.body.image = 'https://www.teknozeka.com/wp-content/uploads/2020/03/wp-header-logo-33.png' }
-  return Restaurant.create(restaurant)
+  return Restaurant.create({ name, category, location, phone, google_map, image, description, rating, userId})
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -20,21 +21,24 @@ router.get('/search', (req, res) => {
     .catch(error => console.error(error))
 })
 router.get('/:id', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .lean()
     .then((restaurants) => res.render('show', { restaurants }))
     .catch(error => console.log(error))
 })
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .lean()
     .then((restaurants) => res.render('edit', { restaurants }))
     .catch(error => console.log(error))
 })
 router.put('/:id', (req, res) => {
-  const id = req.params.id
+  const userId = req.user._id
+  const _id = req.params.id
   let {
     name,
     category,
@@ -45,7 +49,7 @@ router.put('/:id', (req, res) => {
     rating,
     description,
   } = req.body
-  return Restaurant.findById(id)
+  return Restaurant.findOne({ _id, userId })
     .then(restaurant => {
       restaurant.name = name
       restaurant.category = category
@@ -62,8 +66,9 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))

@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
   <link rel="stylesheet" href="/stylesheets/bootstrap.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -15,15 +14,20 @@
   <header>
     <!-- navigation -->
     <nav class="navbar navbar-light bg-light">
-      <div class="container">
+      <div class="container d-flex justify-content-around">
+        <div class="navbar"
+        style="margin-right:385px">
         <a class="navbar-brand" href="/">
           <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
-            width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
-          我的餐廳清單
-        </a>
-        <form action="" >
-         <a href="/restaurants/new" class="btn btn-outline-primary">新增餐廳</a>
-        </form>
+            width="30" height="30" class="d-inline-block align-top" alt="餐廳清單">
+            {{#if isAuthenticated}}{{ user.name}}的{{/if}}餐廳清單      
+         </a>
+        </div>
+        {{#if isAuthenticated}}
+        <a href="/users/logout" class="btn btn-secondary">Logout</a>
+        {{else}}
+        <a href="/users/login" class="btn btn-secondary">Login</a>
+        {{/if}}
       </div>
     </nav>
     <div class="banner"></div>

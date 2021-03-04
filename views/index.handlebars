@@ -1,6 +1,6 @@
 <!-- search bar -->
-<div class="container search-bar d-flex justify-content-around">
-  <div class="search-bar-outer">
+<div class="container search-bar d-flex justify-content-around mt-3">
+  <div class="search-bar-outer" style="margin-right:250px">
     <div class="search-bar-inner">
       <form action="/restaurants/search">
         <div class="input-group">
@@ -24,6 +24,7 @@
       <li><a class="dropdown-item"name="ZtoA"href="/sort/ZtoA">Z -> A</a></li>
       <li><a class="dropdown-item" name="category" href="/sort/category">類別</a></li>
     </ul>
+    <a href="/restaurants/new" class="btn btn-secondary">新增餐廳</a>
   </div>
 </div>
 <!-- restaurant list -->
@@ -56,7 +57,7 @@
           </div>
         </a>
         {{/each}}
-      </div>
+       </div>
     </div>
   </div>
 </div>
