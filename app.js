@@ -15,6 +15,7 @@ require('./config/mongoose')
 const app = express()
 const PORT = process.env.PORT
 
+app.use(express.static('public'))
 app.set('view engine', 'handlebars')
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 
@@ -25,7 +26,6 @@ app.use(session({
 }))
 
 require('./config/mongoose') 
-app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 

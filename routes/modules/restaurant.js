@@ -10,7 +10,7 @@ router.post('/', (req, res) => {
   const { name, category, location, phone, google_map, image, description, rating} = req.body
   if (req.body.image.length === 0) { req.body.image = 'https://www.teknozeka.com/wp-content/uploads/2020/03/wp-header-logo-33.png' }
   return Restaurant.create({ name, category, location, phone, google_map, image, description, rating, userId})
-    .then(() => res.redirect('/'))
+    .then(() =>res.redirect('/'))
     .catch(error => console.log(error))
 })
 router.get('/search', (req, res) => {
